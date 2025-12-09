@@ -26,13 +26,16 @@ def index():
 
             # data historis
             data_history = [
-                {"Tahun": r["Tahun"], "Jumlah_Penduduk": format_number(r["Jumlah_Penduduk"])}
+                {
+                    "Tahun": int(r["Tahun"]),
+                    "Jumlah_Penduduk": format_number(r["Jumlah_Penduduk"])
+                }
                 for r in df.to_dict(orient="records")
             ]
 
-            # data prediksi
+            # data prediksi (pastikan tipe int biasa agar tojson tidak gagal)
             data_prediksi = [
-                {"Tahun": years[i], "Jumlah": format_number(values[i])}
+                {"Tahun": int(years[i]), "Jumlah": format_number(values[i])}
                 for i in range(len(years))
             ]
 
